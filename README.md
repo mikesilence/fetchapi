@@ -79,3 +79,46 @@ function request(urls, callback, type, extra) {
     $.ajax(obj_);
 };
 ```
+
+#### Fetch API
+##### Type GET
+```javascript
+  fetch('/rests/admin/news/tag/list/')
+      .then(function(response) {
+        // typeof response === 'object'
+        return response;
+      }).then(function(body) {
+        console.log('\nbody', body);
+      }).catch(function(err) {
+        console.log('\nparsing failed', err);
+      });
+```
+
+##### Type POST
+```javascript
+  fetch(url, {
+      method: 'post',
+      body: JSON.stringify(fields),
+      credentials: 'include', // important
+      // headers: {
+      //  'Accept': 'application/json',
+      //  'Content-Type': 'application/json'
+      // },
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log('result ->', data.result);
+    }).catch(function(err) {
+      console.log('err ->', err);
+    });
+```
+
+#### polyfill
+https://github.com/github/fetch
+
+bower
+>$ bower install fetch
+>$ bower install es6-promise
+
+npm
+>$ npm install whatwg-fetch --save
